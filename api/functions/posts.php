@@ -13,6 +13,8 @@ if($_SERVER["REQUEST_METHOD"]==='GET'){
         while($row=mysqli_fetch_assoc($result)){
             
 
+
+
             // THIS IS FOR CHECKING TOTAL NO OF LIKES
             $postId=$row['id'];
             $sqllike="SELECT * FROM likes WHERE postId='$postId'";
@@ -21,6 +23,21 @@ if($_SERVER["REQUEST_METHOD"]==='GET'){
             $total_likes=mysqli_num_rows($resultlike);
 
             $row['totalLikes'] = $total_likes;
+
+
+
+
+            // THIS IS FOR CHECKING TOTAL NO OF COMMENTS
+            $postId=$row['id'];
+            $sqlcomment="SELECT * FROM comments WHERE postId='$postId'";
+            $resultcomment=mysqli_query($con,$sqlcomment);
+
+            $total_comments=mysqli_num_rows($resultcomment);
+
+            $row['totalComments'] = $total_comments;
+
+
+
 
             // THIS IS FOR CHECKING IF THE CURRENT USER HAS LIKED THE POST OR NOT
             $sqllike="SELECT * FROM likes WHERE userId='$id' and postId='$postId'";
@@ -34,6 +51,8 @@ if($_SERVER["REQUEST_METHOD"]==='GET'){
                     $row['isLiked']=false;
                 }
 
+
+                
 
             $posts[]=$row;
         }
