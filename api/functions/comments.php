@@ -10,7 +10,8 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
     $sql = "SELECT comments.id, comments.description, comments.createdAt, comments.userId, comments.postId, users.name, users.profilePic 
     FROM comments 
     INNER JOIN users ON comments.userId = users.id 
-    WHERE comments.postId = '$postId'";
+    WHERE comments.postId = '$postId'
+    ORDER BY id DESC";
 
 
     $result = mysqli_query($con, $sql);
