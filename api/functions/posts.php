@@ -1,26 +1,31 @@
 <?php
 include "../connection/config.php";
 
-if($_SERVER["REQUEST_METHOD"]==='GET'){
-    $id=$_GET['id'];
+if ($_SERVER["REQUEST_METHOD"] === 'POST') {
+    $id = $_POST['id'];
+    $location = $_POST['location'];
+    $profileUserId = $_POST['paramsId'];
 
-    $sql="SELECT posts.id,userId,description,createdAt,img,profilePic,name FROM posts JOIN users ON posts.userId = users.id ORDER BY posts.id DESC";
-    $result=mysqli_query($con,$sql);
+    if ($location === "profile") {
+        $sql = "SELECT posts.id,userId,description,createdAt,img,profilePic,name FROM posts JOIN users ON posts.userId = users.id WHERE userId='$profileUserId' ORDER BY posts.id DESC";
+    } else {
+        $sql = "SELECT posts.id,userId,description,createdAt,img,profilePic,name FROM posts JOIN users ON posts.userId = users.id ORDER BY posts.id DESC";
+    }
+    $result = mysqli_query($con, $sql);
 
-    
-    if($result){
-        $posts=[];
-        while($row=mysqli_fetch_assoc($result)){
-            
+    if ($result) {
+        $posts = [];
+        while ($row = mysqli_fetch_assoc($result)) {
+
 
 
 
             // THIS IS FOR CHECKING TOTAL NO OF LIKES
-            $postId=$row['id'];
-            $sqllike="SELECT * FROM likes WHERE postId='$postId'";
-            $resultlike=mysqli_query($con,$sqllike);
+            $postId = $row['id'];
+            $sqllike = "SELECT * FROM likes WHERE postId='$postId'";
+            $resultlike = mysqli_query($con, $sqllike);
 
-            $total_likes=mysqli_num_rows($resultlike);
+            $total_likes = mysqli_num_rows($resultlike);
 
             $row['totalLikes'] = $total_likes;
 
@@ -28,11 +33,11 @@ if($_SERVER["REQUEST_METHOD"]==='GET'){
 
 
             // THIS IS FOR CHECKING TOTAL NO OF COMMENTS
-            $postId=$row['id'];
-            $sqlcomment="SELECT * FROM comments WHERE postId='$postId'";
-            $resultcomment=mysqli_query($con,$sqlcomment);
+            $postId = $row['id'];
+            $sqlcomment = "SELECT * FROM comments WHERE postId='$postId'";
+            $resultcomment = mysqli_query($con, $sqlcomment);
 
-            $total_comments=mysqli_num_rows($resultcomment);
+            $total_comments = mysqli_num_rows($resultcomment);
 
             $row['totalComments'] = $total_comments;
 
@@ -40,33 +45,31 @@ if($_SERVER["REQUEST_METHOD"]==='GET'){
 
 
             // THIS IS FOR CHECKING IF THE CURRENT USER HAS LIKED THE POST OR NOT
-            $sqllike="SELECT * FROM likes WHERE userId='$id' and postId='$postId'";
-            $resultlike=mysqli_query($con,$sqllike);
+            $sqllike = "SELECT * FROM likes WHERE userId='$id' and postId='$postId'";
+            $resultlike = mysqli_query($con, $sqllike);
 
-            $isLikedNum=mysqli_num_rows($resultlike);
-                if($isLikedNum===1){
-                    $row['isLiked']= true;
-                }
-                else{
-                    $row['isLiked']=false;
-                }
+            $isLikedNum = mysqli_num_rows($resultlike);
+            if ($isLikedNum === 1) {
+                $row['isLiked'] = true;
+            } else {
+                $row['isLiked'] = false;
+            }
 
 
-                
 
-            $posts[]=$row;
+
+            $posts[] = $row;
         }
 
         echo json_encode([
-            "status"=>200,
-            "message"=>"Posts obtained succesfully",
-            "data"=>$posts
+            "status" => 200,
+            "message" => "Posts obtained succesfully",
+            "data" => $posts
         ]);
-    }
-    else{
+    } else {
         echo json_encode([
-            "status"=>500,
-            "message"=>"Request failed",
+            "status" => 500,
+            "message" => "Request failed",
         ]);
     }
 }
