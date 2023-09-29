@@ -1,13 +1,18 @@
-<?php 
+<?php
 
-$HOST='localhost';
-$USER='root';
-$PASSWORD='';
-$DB="social";
+// $HOST='localhost';
+// $USER='root';
+// $PASSWORD='';
+// $DB="social";
 
-$con=mysqli_connect($HOST,$USER,$PASSWORD,$DB);
+$HOST = 'https://auth-db1001.hstgr.io/';
+$USER = "u173237549_social";
+$PASSWORD = 'Onepiece@4321';
+$DB = "social";
 
-if(!$con){
+$con = mysqli_connect($HOST, $USER, $PASSWORD, $DB);
+
+if (!$con) {
     die("Conection Failed");
 }
 
