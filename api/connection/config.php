@@ -5,7 +5,7 @@
 // $PASSWORD='';
 // $DB="social";
 
-$HOST = 'srv1001.hstgr.io';
+$HOST = 'auth-db1001.hstgr.io';
 $USER = "u173237549_social";
 $PASSWORD = 'Onepiece@4321';
 $DB = "u173237549_social";
