@@ -17,9 +17,6 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST') {
         $posts = [];
         while ($row = mysqli_fetch_assoc($result)) {
 
-
-
-
             // THIS IS FOR CHECKING TOTAL NO OF LIKES
             $postId = $row['id'];
             $sqllike = "SELECT * FROM likes WHERE postId='$postId'";
