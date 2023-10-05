@@ -1,5 +1,5 @@
 <?php
-include "../connection/config.php";
+include "../../connection/config.php";
 
 if ($_SERVER["REQUEST_METHOD"] === "GET") {
     $postId = $_GET['id'];

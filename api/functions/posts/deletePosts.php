@@ -1,14 +1,14 @@
 <?php
-include "../connection/config.php";
+include "../../connection/config.php";
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $postId = $_POST['id'];
     $file_path = null; // Initialize $file_path variable
 
     // Check if 'file_path' is set
-    if (isset($_POST['file_path']) && file_exists($_POST['file_path'])) {
+    if (isset($_POST['file_path'])) {
         $file = $_POST['file_path'];
-        $file_path = '../images/post/' . substr($file, strrpos($file, '/') + 1);
+        $file_path = '../../images/post/' . substr($file, strrpos($file, '/') + 1);
     }
 
     $sql = "DELETE FROM posts where id=$postId";

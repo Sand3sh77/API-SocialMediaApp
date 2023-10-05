@@ -1,5 +1,5 @@
 <?php
-include "../connection/config.php";
+include "../../connection/config.php";
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $userId = $_POST['userId'];
@@ -8,7 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $image_name = $image['name'];
     $image_ext = $image['type'];
     $image_tmp = $image['tmp_name'];
-    $image_location = "../images/story/" . $image_name;
+    $image_location = "../../images/story/" . $image_name;
     move_uploaded_file($image_tmp, $image_location);
     $image_location_db = "api/images/story/" . $image_name;
 
