@@ -9,7 +9,12 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST') {
     if ($location === "profile") {
         $sql = "SELECT posts.id,userId,description,createdAt,img,profilePic,name FROM posts JOIN users ON posts.userId = users.id WHERE userId='$profileUserId' ORDER BY posts.id DESC";
     } else {
-        $sql = "SELECT posts.id,userId,description,createdAt,img,profilePic,name FROM posts JOIN users ON posts.userId = users.id ORDER BY posts.id DESC";
+        $sql = "SELECT posts.id, userId, description, createdAt, img, profilePic, name 
+        FROM posts 
+        JOIN users ON posts.userId = users.id 
+        LEFT JOIN relationships ON posts.userId = relationships.followedUserId 
+        WHERE relationships.followerUserId = $id OR posts.userId = $id 
+        ORDER BY posts.id DESC";
     }
     $result = mysqli_query($con, $sql);
 
