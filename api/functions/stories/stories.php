@@ -5,7 +5,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $cid = $_POST['currentUserId'];
     $pid = $_POST['paramsId'];
 
-    $sql = "SELECT stories.id, stories.img, stories.createdAt, stories.userId, users.name, users.profilePic 
+    $sql = "SELECT DISTINCT stories.id, stories.img, stories.createdAt, stories.userId, users.name, users.profilePic 
     FROM stories 
     INNER JOIN users ON stories.userId = users.id 
     INNER JOIN relationships ON stories.userId = relationships.followedUserId 
@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     ORDER BY stories.id DESC";
     $result = mysqli_query($con, $sql);
 
-    $sql1 = "SELECT stories.id, stories.img, stories.createdAt, stories.userId, users.name, users.profilePic 
+    $sql1 = "SELECT DISTINCT stories.id, stories.img, stories.createdAt, stories.userId, users.name, users.profilePic 
     FROM stories 
     INNER JOIN users ON stories.userId = users.id 
     WHERE stories.userId=$cid
