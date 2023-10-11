@@ -21,6 +21,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $sql = "INSERT INTO posts(description,img,userId,createdAt) VALUES( '$desc','$image_location_db','$userId',NOW())";
         $result = mysqli_query($con, $sql);
         if ($result) {
+            $not = "INSERT INTO notifications(notification,userId,createdAt) VALUES('added a post.',$userId,NOW())";
+            $nres = mysqli_query($con, $not);
+
             echo json_encode([
                 "status" => 200,
                 "message" => "Post added sucessfully"

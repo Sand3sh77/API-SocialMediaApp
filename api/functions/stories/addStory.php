@@ -16,6 +16,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $result = mysqli_query($con, $sql);
 
     if ($result) {
+        $not = "INSERT INTO notifications(notification,userId,createdAt) VALUES('added a story.',$userId,NOW())";
+        $nres = mysqli_query($con, $not);
+
         echo json_encode([
             "status" => 200,
             "message" => "Story added succesfully"

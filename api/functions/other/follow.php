@@ -26,6 +26,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $result = mysqli_query($con, $sql);
 
         if ($result) {
+            $not = "INSERT INTO notifications(notification,userId,createdAt) VALUES('started following you.',$followerId,NOW())";
+            $nres = mysqli_query($con, $not);
+
             echo json_encode([
                 "status" => 200,
                 "message" => "Followed Succesfully"

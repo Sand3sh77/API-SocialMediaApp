@@ -15,8 +15,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $image_location_db = "api/images/user/" . $location . '/' . $image_name;
 
     if ($location === "profile") {
+
+        $not = "INSERT INTO notifications(notification,userId,createdAt) VALUES('changed profile picture.',$id,NOW())";
+        $nres = mysqli_query($con, $not);
+
         $sql = "UPDATE users SET profilePic='$image_location_db' where id='$id'";
     } else if ($location === "cover") {
+
+        $not = "INSERT INTO notifications(notification,userId,createdAt) VALUES('changed cover picture.',$id,NOW())";
+        $nres = mysqli_query($con, $not);
         $sql = "UPDATE users SET coverPic='$image_location_db' where id='$id'";
     }
     $result = mysqli_query($con, $sql);
