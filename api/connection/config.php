@@ -1,9 +1,10 @@
 <?php
 header('Access-Control-Allow-Origin: *');
-// $HOST='localhost';
-// $USER='root';
-// $PASSWORD='';
-// $DB="social";
+
+// $HOST = 'localhost';
+// $USER = 'root';
+// $PASSWORD = '';
+// $DB = "social";
 
 $HOST = 'auth-db1001.hstgr.io';
 $USER = "u173237549_social";

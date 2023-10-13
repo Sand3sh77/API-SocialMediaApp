@@ -1,5 +1,6 @@
 <?php
 include "../../connection/config.php";
+header('Access-Control-Allow-Origin: *');
 
 if ($_SERVER["REQUEST_METHOD"] === 'POST') {
     $id = $_POST['id'];
