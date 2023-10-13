@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             ]);
         }
     } else {
-        $sql = "INSERT INTO relationships(followerUserId,followedUserId) VALUES ('$followerId','$followedId')";
+        $sql = "INSERT INTO relationships(followerUserId,followedUserId,followedAt) VALUES ('$followerId','$followedId',NOW())";
         $result = mysqli_query($con, $sql);
 
         if ($result) {
