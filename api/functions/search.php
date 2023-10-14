@@ -1,5 +1,5 @@
 <?php
-include "../../connection/config.php";
+include "../connection/config.php";
 header('Access-Control-Allow-Methods: *');
 header('Access-Control-Allow-Headers: *');
 
