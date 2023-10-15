@@ -4,7 +4,7 @@ include "../../connection/config.php";
 if ($_SERVER["REQUEST_METHOD"] === "GET") {
     $id = $_GET['id'];
 
-    $sql = "SELECT DISTINCT u.id, u.name, u.profilePic
+    $sql = "SELECT DISTINCT u.id, u.name, u.profilePic,u.method
     FROM users u
     INNER JOIN relationships r ON u.id=r.followedUserId
     WHERE r.followerUserId=$id

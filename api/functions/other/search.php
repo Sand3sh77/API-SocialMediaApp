@@ -1,7 +1,5 @@
 <?php
-include "../connection/config.php";
-header('Access-Control-Allow-Methods: *');
-header('Access-Control-Allow-Headers: *');
+include "../../connection/config.php";
 
 if ($_SERVER["REQUEST_METHOD"] === 'POST') {
     $id = $_POST['id'];

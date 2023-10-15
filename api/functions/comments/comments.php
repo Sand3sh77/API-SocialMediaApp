@@ -7,7 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
     // $sql = "SELECT comments.id,comments.desc,comments.createdAt,comments.userId,comments.postId,users.name,
     // users.profilePic FROM comments JOIN users ON comments.userId=users.id WHERE comments.postId='$postId'";
 
-    $sql = "SELECT comments.id, comments.description, comments.createdAt, comments.userId, comments.postId, users.name, users.profilePic 
+    $sql = "SELECT comments.id, comments.description, comments.createdAt, comments.userId, comments.postId, users.name, users.profilePic ,users.method
     FROM comments 
     INNER JOIN users ON comments.userId = users.id 
     WHERE comments.postId = '$postId'

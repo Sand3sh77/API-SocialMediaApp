@@ -4,7 +4,7 @@ include "../../connection/config.php";
 if ($_SERVER["REQUEST_METHOD"] === "GET") {
     $id = $_GET['id'];
 
-    $sql = "SELECT u.id, u.name, u.profilePic
+    $sql = "SELECT u.id, u.name, u.profilePic,u.method
     FROM users u
     LEFT JOIN relationships r ON u.id = r.followedUserId AND r.followerUserId = $id
     WHERE r.followedUserId IS NULL AND u.id != $id
