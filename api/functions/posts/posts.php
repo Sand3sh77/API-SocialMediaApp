@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST') {
 
             // THIS IS FOR CHECKING TOTAL NO OF LIKES
             $postId = $row['id'];
-            $sqllike = "SELECT * FROM likes WHERE postId='$postId'";
+            $sqllike = "SELECT DISTINCT * FROM likes WHERE postId='$postId'";
             $resultlike = mysqli_query($con, $sqllike);
 
             $total_likes = mysqli_num_rows($resultlike);
@@ -47,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST') {
 
 
             // THIS IS FOR CHECKING IF THE CURRENT USER HAS LIKED THE POST OR NOT
-            $sqllike = "SELECT * FROM likes WHERE userId='$id' and postId='$postId'";
+            $sqllike = "SELECT DISTINCT * FROM likes WHERE userId='$id' and postId='$postId'";
             $resultlike = mysqli_query($con, $sqllike);
 
             $isLikedNum = mysqli_num_rows($resultlike);

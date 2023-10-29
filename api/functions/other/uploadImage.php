@@ -29,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $result = mysqli_query($con, $sql);
 
     if ($result) {
-        if ($currentImage) {
+        if (file_exists($currentImage)) {
             unlink('../../images/user/' . $location . '/' . substr($currentImage, strrpos($currentImage, '/') + 1));
         }
         echo json_encode([
