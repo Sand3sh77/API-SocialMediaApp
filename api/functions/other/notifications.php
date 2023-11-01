@@ -3,6 +3,7 @@ include "../../connection/config.php";
 
 if ($_SERVER["REQUEST_METHOD"] === "GET") {
     $id = $_GET['id'];
+    $limit = $_GET["limit"];
 
     $sql = "SELECT DISTINCT n.id, u.name, u.profilePic,n.notification,n.createdAt,n.userId,n.postId,u.method
     FROM users u
@@ -10,7 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
     INNER JOIN relationships r ON u.id=r.followedUserId
     WHERE r.followerUserId=$id AND n.createdAt>=r.followedAt
     ORDER BY n.id DESC
-    LIMIT 5";
+    LIMIT $limit";
     $result = mysqli_query($con, $sql);
 
     if ($result) {
