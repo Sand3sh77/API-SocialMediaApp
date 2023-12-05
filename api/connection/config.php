@@ -8,7 +8,7 @@ header('Access-Control-Allow-Origin: *');
 
 $HOST = 'auth-db1001.hstgr.io';
 $USER = "u173237549_social";
-$PASSWORD = $_ENV['DB_PASSWORD'];
+$PASSWORD = "Onepiece@4321";
 $DB = "u173237549_social";
 
 $con = mysqli_connect($HOST, $USER, $PASSWORD, $DB);
