@@ -24,4 +24,4 @@ jobs:
     - name: Execute PHP script
       env:
         DB_PASSWORD: ${{ secrets.DB_PASSWORD }}  # Setting the secret as an environment variable
-      run: php connect.php
+      run: php api/connection/config.php
